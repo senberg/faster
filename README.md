@@ -1,0 +1,2 @@
+# faster
+Faster, faster, faster.
