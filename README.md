@@ -1,2 +1,2 @@
 # Faster
-Faster, faster, faster.
+Fast data structures, bit hacks etc.
