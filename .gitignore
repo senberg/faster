@@ -5,6 +5,8 @@
 /build/
 /.project
 /.classpath
+/target
+
 *.iml
 *.ipr
 *.iws
