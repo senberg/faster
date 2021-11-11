@@ -10,11 +10,11 @@ public class IntSet {
     private int resizeThreshold;
     private int size;
 
-    public IntSet(){
+    public IntSet() {
         this(16);
     }
 
-    public IntSet(int maxInitialCapacity){
+    public IntSet(int maxInitialCapacity) {
         this.capacity = maxInitialCapacity;
         this.resizeThreshold = capacity / 2;
         data = new int[this.capacity];
@@ -32,11 +32,10 @@ public class IntSet {
     public boolean contains(int value) {
         int position = hash(value);
 
-        while(set[position]){
-            if(data[position] == value){
+        while (set[position]) {
+            if (data[position] == value) {
                 return true;
-            }
-            else{
+            } else {
                 position++;
                 position %= capacity;
             }
@@ -48,11 +47,10 @@ public class IntSet {
     public void add(int value) {
         int position = hash(value);
 
-        while(set[position]){
-            if(data[position] == value){
+        while (set[position]) {
+            if (data[position] == value) {
                 return;
-            }
-            else{
+            } else {
                 position++;
                 position %= capacity;
             }
@@ -64,17 +62,16 @@ public class IntSet {
         ensureCapacity();
     }
 
-    private void ensureCapacity(){
-        if(size > resizeThreshold && capacity < MAX_CAPACITY){
+    private void ensureCapacity() {
+        if (size > resizeThreshold && capacity < MAX_CAPACITY) {
             int oldCapacity = capacity;
             int[] oldData = data;
             boolean[] oldSet = set;
 
-            if(capacity * 2 > MAX_CAPACITY){
+            if (capacity * 2 > MAX_CAPACITY) {
                 capacity = MAX_CAPACITY;
                 resizeThreshold = MAX_CAPACITY;
-            }
-            else{
+            } else {
                 capacity = capacity * 2;
                 resizeThreshold = capacity * 2;
             }
@@ -83,11 +80,11 @@ public class IntSet {
             set = new boolean[capacity];
 
             for (int i = 0; i < oldCapacity; i++) {
-                if(oldSet[i]){
+                if (oldSet[i]) {
                     int value = oldData[i];
                     int position = hash(value);
 
-                    while(set[position]){
+                    while (set[position]) {
                         position++;
                         position %= capacity;
                     }
@@ -102,33 +99,33 @@ public class IntSet {
     public void remove(int value) {
         int position = hash(value);
 
-        while(set[position] && data[position] != value){
+        while (set[position] && data[position] != value) {
             position++;
             position %= capacity;
         }
 
-        if (set[position]){
+        if (set[position]) {
             size--;
         }
 
         int nextPosition = position;
 
-        while(set[position]){
+        while (set[position]) {
             set[position] = false;
             int nextNaturalPositon;
             int nextPositionData;
 
-            do{
+            do {
                 nextPosition++;
                 nextPosition %= capacity;
 
-                if(!set[nextPosition]){
+                if (!set[nextPosition]) {
                     return;
                 }
 
                 nextPositionData = data[nextPosition];
                 nextNaturalPositon = hash(nextPositionData);
-            } while((position <= nextPosition) ? ((position < nextNaturalPositon) && (nextNaturalPositon <= nextPosition)) : (( position<nextNaturalPositon ) || (nextNaturalPositon <= nextPosition)));
+            } while ((position <= nextPosition) ? ((position < nextNaturalPositon) && (nextNaturalPositon <= nextPosition)) : ((position < nextNaturalPositon) || (nextNaturalPositon <= nextPosition)));
 
             set[position] = true;
             data[position] = nextPositionData;
@@ -141,10 +138,9 @@ public class IntSet {
     }
 
     public void set(int value, boolean contained) {
-        if(contained){
+        if (contained) {
             add(value);
-        }
-        else{
+        } else {
             remove(value);
         }
     }
@@ -164,7 +160,7 @@ public class IntSet {
     }
 
     public void clear() {
-        for (int i = 0; i < capacity; i++){
+        for (int i = 0; i < capacity; i++) {
             set[i] = false;
         }
 

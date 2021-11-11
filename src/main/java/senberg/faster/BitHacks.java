@@ -38,10 +38,10 @@ public abstract class BitHacks {
     }
 
     /**
-     * @param input should be not be negative
+     * @param input  should be not be negative
      * @param modulo should be not be negative
      */
-    public static int positiveModulo(int input, int modulo){
+    public static int positiveModulo(int input, int modulo) {
         int result = input % modulo;
         return (result >= 0) ? result : result + modulo;
     }

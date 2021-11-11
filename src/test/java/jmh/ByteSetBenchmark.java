@@ -6,6 +6,7 @@ import senberg.faster.ByteSetSimple;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Warmup(iterations = 3, batchSize = 5, time = 2, timeUnit = SECONDS)
@@ -109,14 +110,14 @@ public class ByteSetBenchmark {
         byteSet.add((byte) 1);
         byteSet.remove((byte) 2);
         byteSet.remove((byte) 1);
-        boolean b1 = byteSet.contains((byte)12);
+        boolean b1 = byteSet.contains((byte) 12);
         byteSet.clear();
         byteSet.add((byte) 123);
         byteSet.add((byte) 13);
         byteSet.add((byte) 1);
         byteSet.remove((byte) 2);
         byteSet.remove((byte) 1);
-        boolean b2 = byteSet.contains((byte)0);
+        boolean b2 = byteSet.contains((byte) 0);
         if (b1 && b2) {
             byteSet.add((byte) 0);
         } else {
