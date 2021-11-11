@@ -1,6 +1,7 @@
-package senberg.faster;
+package jmh;
 
 import org.openjdk.jmh.annotations.*;
+import senberg.faster.IntSet;
 
 import java.util.HashSet;
 import java.util.Set;
